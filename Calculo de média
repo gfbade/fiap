@@ -1,0 +1,9 @@
+nota1 = 8
+nota2 = 6
+temp = nota1+nota2
+print(temp)
+media = temp/2
+print("Sua média é:", media)
+
+media = (nota1+nota2)/2
+print("Sua média é: " +str(media))

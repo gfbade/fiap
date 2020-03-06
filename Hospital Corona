@@ -1,0 +1,20 @@
+#hospital
+#corona virus
+
+#nome; idade 15 < or > 60; tem risco? (Prioritário)/ segue na fila
+
+nome = input("Nome do paciente:")
+idade = int(input("Entre a idade do paciente:"))
+risco = input("Paciente é do grupo de risco?(s/n):").upper()
+
+if risco != "S" and risco!= "N":
+    risco = input("Paciente é do grupo de risco?(Digite s/n):").upper()
+
+if idade < 15 or idade > 60:
+    print("Este paciente entra na prioridade")
+
+elif risco == "S":
+    print("Este paciente entra na prioridade")
+
+else:
+    print("Este paciente entra na fila")

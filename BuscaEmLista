@@ -1,0 +1,14 @@
+import re
+vazamento = ["www.alberico.com", "www.gustavo.com", "www.youtube.com.br", "alberico@cWUmPx", "gustavo@crgtOF", "rapha@Lnqyon", "isKJKMmPlr", "claNIAtVQA", "NxartpDKBN", "eWWwoALkWs",
+"clIUYLINdH", "FWfBhhXHsh", "www.rapha.com", "www.dofus.com", "www.ankama.com", "www.cleyton.com.br", "cleyton@DpgsKX", "silvio@tmaQyd", "fiap@tolo.com", "pfuWgtUdzl",
+"GRUknzetDL", "ghKsfRcFXj", "xUKeqylSaa", "BYADoARBec", "GYnsqWGgIB", "www.fiap.com.br", "www.silvio.com", "www.udemy.com", "www.marvel.com", "edwaldo@kFizMk"]
+
+padrao = input("Qual dado você está buscando? ").lower() #cria um padrão de busca pra expressão regular search
+naovazou = 1 #variável que se não for alterada irá ativar o IF abaixo dizendo que o dado não vazou,
+for x in vazamento: #varrendo a lista
+    vazou = re.search(padrao, x) #search procura o padrão que o usuário digitou dentro de uma string independendo de em que parte da string o padrão está ex:"you" vai achar a palavra www.youtube.com.br
+    if vazou: #a váriável search não retorna a string, ela retorna se achou ou não.. se achar retorna true, se não retorna none,  o if é ativado se for true mesmo sem ter um modelo de comparação, como vazou é true o if ativa
+        naovazou = 0 #troca o valor de não vazou pra informação dado do site não vazou não ser impressa, sem isso ele vai postar que o dado vazou pra 1 palavra que achar depois postar dado não vazou pras outras 29 palavras
+        print("Este dado foi vazado",x) #printa o valor de x que é a string da lista que está sendo avaliada no momento
+if naovazou == 1: # se não achou nenhuma combinação na lista ele imprime a msg abaixo
+    print("Dado desse site não vazou")

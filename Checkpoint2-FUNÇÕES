@@ -1,0 +1,93 @@
+#Cadastro
+def cadastroElemento(leak):
+    resp = "S"
+    while resp =="S":
+        tag = input("\nEntre uma tag para o vazamento: ").upper()
+        leak[tag] = [input("Entre um vazamento: "), input("Senha do Email: "), int(input("Validade da conta: "))]
+        resp = input("Deseja cadastrar mais um email? ").upper()
+ 
+#Exibir
+def exibirElementos(leak):
+    for tag, lista in leak.items():
+        print("\nTag...........", tag)
+        print("Email......... ", lista[0])
+        print("Senha......... ", lista[1])
+        print("Validade...... ", lista[2])       
+    tmp = input("precione enter para continuar")
+ 
+#Busca  Foi alterado os parametros de busca para buscar qualquer item do dicionário, podendo realizar
+#várias buscas sem retornar ao menu inicial
+def buscarElemento(leak):
+    naovazou = 1
+    tipo = "0"
+    while tipo != "SAIR":
+        tipo = input("\nQue tipo de dado você procura?(Tag, Email, senha, validade ou sair): ").upper()
+        if tipo == "TAG":
+            busca = input("\nQual a tag de busca? ").upper()   
+            if leak.get(busca) != None:
+                lista = leak.get(busca)
+                print("\nTag........... ", busca)
+                print("Email......... ", lista[0])
+                print("Senha......... ", lista[1])
+                print("Validade...... ", lista[2])
+            else:
+                print("\nTag não vazou!")
+
+        elif tipo == "EMAIL":
+            busca = input("\nQual Email procura? ")
+            for tag, lista in leak.items():
+                if busca == lista[0]:
+                    naovazou = 0
+                    print("\nTag........... ", tag)
+                    print("Email......... ", lista[0])
+                    print("Senha......... ", lista[1])
+                    print("Validade...... ", lista[2])
+            if naovazou == 1:
+                print("\nEmail não vazou!")
+
+        elif tipo == "SENHA":
+            busca = input("\nQual senha procura? ")
+            for tag, lista in leak.items():
+                if busca == lista[1]:
+                    naovazou = 0
+                    print("\nTag........... ", tag)
+                    print("Email......... ", lista[0])
+                    print("Senha......... ", lista[1])
+                    print("Validade...... ", lista[2])
+            if naovazou == 1:
+                print("\nSenha não vazou!")
+
+        elif tipo == "VALIDADE":
+            busca = int(input("\nQual VALIDADE procura? "))
+            for tag, lista in leak.items():
+                if busca == lista[2]:
+                    naovazou = 0
+                    print("\nTag........... ", tag)
+                    print("Email......... ", lista[0])
+                    print("Senha......... ", lista[1])
+                    print("Validade...... ", lista[2])
+            if naovazou == 1:
+                print("\nValidade não vazou!")
+    tmp = input("\nprecione enter para continuar")
+ 
+#Alteraca de Validade
+def alterarValidade(leak):
+    alteracao = input("\nQual o tag para alteracao de validade: ").upper()
+    if leak.get(alteracao) != None:
+        lista = leak.get(alteracao)
+        leak[alteracao] = [lista[0], lista[1], int(input("Entre a nova validade da conta: "))]
+        lista = leak.get(alteracao)
+        print("\nEmail......... ", lista[0])
+        print("Senha......... ", lista[1])
+        print("Validade...... ", lista[2])
+    else:
+        print("Tag nao encontrada!")
+    tmp = input("\nprecione enter para continuar")
+ 
+#deletar
+def deletarElemento(leak):
+    deletar = input("\nQual a tag para exclusao: ").upper()
+    if leak.get(deletar) != None:
+        del leak[deletar]
+    else:
+        print("Tag nao encontrada!")

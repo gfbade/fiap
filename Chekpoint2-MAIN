@@ -1,0 +1,29 @@
+from funcoesCheck2 import *
+ #Para não copiar o código dado em aula de um jeito diferente, foi implementado buscas por dados(checkpoint-1)
+vazamento = {"FIAP":["email@fiap.com", "senha", 321], "CHICO":["chico@gmail.com", "8762108371" , 321], 
+"GOOGLE":["google@gmail.com", "321", 30], "AMAZON":["hello@amazon.com", "clIU", 30], 
+"YOUTUBE":["youtube@gmail.com.br", "FWfB", 60], "BADE":["gustavo@ferreira.com", "senha", 90]}
+opcao = "0" #Corrigi um erro no menu inicial, quando não digitava nada ou string na opção dava erro por ser int
+while opcao != "6":
+    print("\nSistema de Vazamento\n")
+    print("1 - Cadastrar um vazamento")
+    print("2 - Exibir todos os dados vazados")
+    print("3 - Buscas de dados vazados")
+    print("4 - Alterar a Validade")
+    print("5 - Excluir Email")
+    print("6 - Sair")
+    opcao = input("Escolha uma Opcao: ")
+    if opcao == "1":
+        cadastroElemento(vazamento)
+    elif opcao == "2":
+        exibirElementos(vazamento)
+    elif opcao == "3":
+        buscarElemento(vazamento)
+    elif opcao == "4":
+        alterarValidade(vazamento)
+    elif opcao == "5":
+        deletarElemento(vazamento)
+    elif opcao == "6":
+        exit()
+    else:
+        print("\nOpcao invalida!\n")

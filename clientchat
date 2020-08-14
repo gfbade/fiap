@@ -1,0 +1,29 @@
+from socket import *
+from cryptography.fernet import Fernet
+
+key = Fernet.generate_key()
+cipher_suite = Fernet(key)
+
+servidor = "127.0.0.1"
+porta = 60050
+
+while True:
+    conexao = socket(AF_INET, SOCK_STREAM)
+    conexao.connect((servidor, porta))
+
+    key_bytes = bytes(key)
+    conexao.send(key_bytes)
+    
+    while True:
+        msg = bytes(input("Digite uma mensagem: "), 'utf-8')
+        
+        cipher_text = bytes(cipher_suite.encrypt(msg))
+        
+        conexao.send(cipher_text)
+        resposta = conexao.recv(1024)
+
+        msgrecebida = cipher_suite.decrypt(resposta)
+
+        print("Recebemos: ", str(resposta))
+        print("decriptografada: ", msgrecebida)
+    conexao.close()

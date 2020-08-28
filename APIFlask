@@ -1,0 +1,38 @@
+from flask import Flask, request
+from flask_restful import Resource, Api
+
+app = Flask(__name__)
+api = Api(app)
+
+class Aluno(Resource):
+    def get(self):
+        mensagem = "O TDCF eh show! Adicione /numero (/10, /12, etc) no endereco"
+        return mensagem
+
+class Aluno_id(Resource):
+    def get(self, aluno_id):
+        if aluno_id == "10":
+            mensagem = "Bem Vindo Gustavo!!!"
+        elif aluno_id == "12":
+            mensagem = "Bem vinda Sara!!"
+        else:
+            mensagem = "Bem Vindo estranho!"
+        return mensagem
+
+class Professor(Resource):
+    def get(self):
+        mensagem = "Area de professores!"
+        return mensagem
+
+class Bemvindos(Resource):
+    def get(self):
+        mensagem = "Area de professores!"
+        return mensagem
+
+api.add_resource(Aluno, "/aluno")
+api.add_resource(Aluno_id, "/aluno/<aluno_id>")
+api.add_resource(Professor, "/prof")
+api.add_resource(Bemvindos, "/")
+
+if __name__ == "__main__":
+    app.run(port="5010")

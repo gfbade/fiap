@@ -1,0 +1,33 @@
+arquivoatual = input("Digite o nome do arquivo de configuração:")
+arquivobackup = input("Digite o nome do arquivo de backup:")
+
+conteudoatual = open(arquivoatual, 'r').read()
+
+conteudobackup = open(arquivobackup, 'r').read()
+
+if conteudoatual != conteudobackup:
+    print("Arquivo de configuração foi alterado.")
+    querSubstituir = input("Deseja restaurá-lo?(sim/nao)").lower()
+    if querSubstituir == "sim":
+        arquivo = open(arquivobackup,'r')
+        conteudo = arquivo.readlines()
+        arquivo.close()
+
+        arquivo = open(arquivoatual, 'w')
+        arquivo.writelines(conteudo)
+        arquivo.close()
+        print("Backup foi aplicado!!!")
+    else:
+        querSubstituir = input("Deseja substituir o backup pelo arquivo atual?(sim/nao)").lower()
+        if querSubstituir == "sim":
+            arquivo = open(arquivoatual,'r')
+            conteudo = arquivo.readlines()
+            arquivo.close()
+
+            arquivo = open(arquivobackup, 'w')
+            arquivo.writelines(conteudo)
+            arquivo.close()
+            print("Backup alterado!!!")
+
+else:
+    print("Arquivo não alterado!!!")
